@@ -11,6 +11,8 @@ namespace YourStoryAPI.Data
         }
 
         public DbSet<Journal> Journals { get ; set; }
+        public DbSet<User> Users { get ; set; }
+        public DbSet<List> Lists { get; set; }
          
     }
 }
