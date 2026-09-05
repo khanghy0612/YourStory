@@ -3,6 +3,7 @@
     public class Journal
     {
         public int id { get; set; }
+        public int users_id { get; set; }
         public DateTime posted_day { get; set; }
         public bool is_draft { get; set; }
         public bool for_you { get; set; }
