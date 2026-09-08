@@ -1,7 +1,12 @@
-﻿using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using YourStoryAPI.Data;
 using YourStoryAPI.Models;
+using System.Text;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace YourStoryAPI.Controllers
 {
@@ -10,10 +15,39 @@ namespace YourStoryAPI.Controllers
     public class UserController : ControllerBase
     {
         private readonly YourStoryDbContext _context;
+        private readonly IConfiguration _configuration;
 
-        public UserController(YourStoryDbContext context)
+        public UserController(YourStoryDbContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
+        }
+
+        // CREATE JWT TOKEN
+        private string GenerateToken(User user)
+        {
+            var claims = new[]
+            {
+                new Claim("UserId", user.id.ToString()),
+                new Claim("UserName", user.users_name)
+            };
+
+            var key = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!));
+
+            var credentials = new SigningCredentials(
+                key,
+                SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration["Jwt:Issuer"],
+                audience: _configuration["Jwt:Audience"],
+                claims: claims,
+                expires: DateTime.Now.AddHours(1),
+                signingCredentials: credentials
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
         //FIND
@@ -57,9 +91,11 @@ namespace YourStoryAPI.Controllers
             if (user == null)
                 return Unauthorized("Invalid username or password");
 
+            string token = GenerateToken(user);
             return Ok(
                 new
                 {
+                    token,
                     user.avatar_url,
                     user.users_name,
                     user.email,
@@ -68,6 +104,7 @@ namespace YourStoryAPI.Controllers
         }
 
         //VIEW PROFILE
+        [Authorize]
         [HttpGet("{id}")]
         public IActionResult ViewProfile( int id )
         {
@@ -75,6 +112,7 @@ namespace YourStoryAPI.Controllers
             if (user == null)
                 return NotFound();
 
+           
             return Ok(
                 new
                 {
@@ -86,6 +124,7 @@ namespace YourStoryAPI.Controllers
         }
 
         //UPDATE profile
+        [Authorize]
         [HttpPut("{id}")]
         public IActionResult UpdateProfile( int id, User newUser )
         {
@@ -108,6 +147,7 @@ namespace YourStoryAPI.Controllers
         }
 
         //CHANGE password
+        [Authorize]
         [HttpPut("password/{id}")]
         public IActionResult ChangePassword( int id, string oldpass, string newpass )
         {
