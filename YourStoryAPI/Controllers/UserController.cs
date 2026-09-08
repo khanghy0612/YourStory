@@ -67,6 +67,9 @@ namespace YourStoryAPI.Controllers
         [HttpPost("signup")]
         public IActionResult SignUp(User user)
         {
+            if (ModelState.IsValid == false)
+                return BadRequest(ModelState);
+
             if (FindByMail(user.email) != null)
                 return BadRequest("User exist");
 
@@ -103,7 +106,7 @@ namespace YourStoryAPI.Controllers
                 });
         }
 
-        //VIEW PROFILE
+        //VIEW Profile
         [Authorize]
         [HttpGet("{id}")]
         public IActionResult ViewProfile( int id )
