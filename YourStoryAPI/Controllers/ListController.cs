@@ -91,7 +91,7 @@ namespace YourStoryAPI.Controllers
             return Ok( journals.OrderByDescending(x => x.posted_day));
         }
 
-        //Create empty List
+        //CREATE empty List
         [HttpPost]
         public IActionResult Create( List list )
         {
