@@ -1,0 +1,105 @@
+PROJECT "YOUR STORY"
+
+### 1. Phân tích app
+
+* [X] Chốt chức năng
+* [X] Xác định For You / For Others
+* [X] Xác định các màn hình chính
+
+### 2. Thiết kế Database
+
+* [X] Xác định Entity
+* [X] Vẽ ERD
+* [X] Xác định PK / FK / Relationship
+* [X] Tạo Database SQL Server
+* [X] Tạo dữ liệu mẫu
+
+### 3. Backend Core
+
+* [X] ASP.NET Core Web API
+* [X] HTTP / REST API
+* [X] Entity Framework Core
+* [X] SQL Server
+* [X] DbContext
+* [X] Controller
+* [X] JWT Authentication
+* [X] Validation
+
+### 4. Chức năng Backend
+
+USER
+* [X] Sign Up
+* [X] Login
+* [X] Logout
+* [X] View Profile
+* [X] Update Profile
+* [X] Change Password
+* [X] Avatar URL
+
+JOURNAL
+* [X] Create Journal
+* [X] Save Draft
+* [X] Read Journal
+* [X] Update Draft
+* [X] Delete Journal
+* [X] Sort Journal
+* [X] Add Journal To List
+* [X] Remove Journal From List
+
+LIST
+* [X] Create List
+* [X] Read List
+* [X] Rename List
+* [X] Delete List
+* [X] Add Journal
+* [X] Remove Journal
+* [X] View Journals In List
+
+### 5. Backend Testing
+
+* [X] Swagger
+* [X] CRUD Testing
+* [X] JWT Testing
+* [X] Authorization Testing
+
+### 6. Frontend
+[X] first page.html
+[X] login.html
+[X] signup.html
+[X] home.html
+[X] profile.html
+[ ] write-journal.html
+[ ] journal-detail.html
+[ ] lists.html
+[ ] list-detail.html
+
+### 7. Frontend + Backend Integration
+
+* [ ] Fetch API
+* [ ] Login API
+* [ ] Register API
+* [ ] Journal API
+* [ ] List API
+* [ ] Profile API
+* [ ] Store JWT (localStorage)
+* [ ] Authorization Header
+* [ ] Error Handling
+* [ ] Loading State
+
+### 8. Hoàn thiện sản phẩm
+
+* [ ] UI/UX Polish
+* [ ] Deploy Backend
+* [ ] Deploy Frontend
+* [ ] Test End-to-End
+* [ ] Viết README hoàn chỉnh
+* [ ] Chụp ảnh demo
+* [ ] Ghi video demo
+
+### 9. Nâng cấp Backend (Version 2)
+
+* [ ] DTO
+* [ ] Service Layer
+* [ ] BCrypt Password Hashing
+* [ ] Export Journal PDF
+* [ ] Claim-based Authorization
