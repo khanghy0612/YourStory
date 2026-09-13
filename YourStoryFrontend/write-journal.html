@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write Journal</title>
+</head>
+
+<body>
+    <div>
+        <!-- Back to home -->
+        <div>
+            <a href="home.html">
+                Back
+            </a>
+        </div>
+
+        <div>
+            <h1> Write a journal </h1>
+        </div>
+        
+        <form>
+            <!-- For you/others -->
+            <div>
+                <label>Audience</label>
+                <br>
+
+                <input type="radio" id="forYou" name="audience" checked>
+                <label for="forYou">For You</label>
+
+                <input type="radio" id="forOthers" name="audience">
+                <label for="forOthers">For Others</label>
+            </div>
+            
+
+            <!-- Add img -->
+            <div>
+                <label for="img"> Add Image</label>
+                <br>
+                <input type="file" accept="image/*" id="img" >
+            </div>
+
+            <!-- Title -->
+            <div>
+                <label for="title"> Journal Title </label>
+                <br>
+                <input type="text" id="title"> 
+
+            </div>
+
+            <!-- Content -->
+            <div>
+                <label for="content"> Content </label>
+                <br>
+                <textarea placeholder="Write here" id="content"> </textarea>
+            </div>
+
+            <!-- Draft button -->
+            <div>
+                <button type="button">Save Draft</button>
+            </div>
+
+            <!-- Publish button -->
+            <div>
+                <button type="submit">Publish</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
