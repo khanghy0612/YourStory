@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
+
 <body>
+
     <div>
         <div>
             <!-- To Sign up -->
@@ -18,19 +20,49 @@
             <h1> Login </h1>
         </div>
         
-        <form>
+        <form id="loginForm">
             <!-- User name -->
-            <input type = "text" placeholder="Username">
+            <input id ="username" type = "text" placeholder="Username">
             <br>
 
             <!-- Pass word -->
-            <input type = "password" placeholder="Password"> 
+            <input id ="password"  type = "password" placeholder="Password"> 
             <br>
             
             <!-- Login button -->
-            <button type="submit"> Login </button>
+            <button type="button"
+                    onclick= "Login()" >
+                Login 
+            </button>
+
+            <!-- Notice text -->
+            <div id="notice"></div>
         </form>
 
     </div>
+
+    <script>
+        const URL = "https://localhost:7145/api";
+        async function Login()
+        {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            const response = await fetch(`${URL}/User/login?username=${username}&pass=${password}`, { method: "POST"});
+
+            if( !response.ok )
+            {
+                document.getElementById("notice").innerText = "Invalid username or password";
+                return;
+            }
+
+            document.getElementById("notice").innerText = "";
+            const data = await response.json();
+
+            localStorage.setItem( "token", data.token );
+
+            window.location.href = "home.html";
+        }
+    </script>
 </body>
 </html>

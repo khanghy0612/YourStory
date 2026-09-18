@@ -63,26 +63,30 @@ LIST
 * [X] Authorization Testing
 
 ### 6. Frontend
-[X] first page.html
+[X] firstpage.html
 [X] login.html
 [X] signup.html
 [X] home.html
 [X] profile.html
-[ ] write-journal.html
-[ ] journal-detail.html
-[ ] lists.html
-[ ] list-detail.html
+[X] write-journal.html
+[X] journals.html
+[X] view-journal.html
+[X] lists.html
+[X] view-list.html
 
 ### 7. Frontend + Backend Integration
 
-* [ ] Fetch API
-* [ ] Login API
-* [ ] Register API
+* [X] Fetch API
+* [X] Login API
+* [X] Sign-up API
+* [X] Store JWT (localStorage)
+
+* [ ] Authorization Header
+* [ ] Profile API
+
 * [ ] Journal API
 * [ ] List API
-* [ ] Profile API
-* [ ] Store JWT (localStorage)
-* [ ] Authorization Header
+
 * [ ] Error Handling
 * [ ] Loading State
 

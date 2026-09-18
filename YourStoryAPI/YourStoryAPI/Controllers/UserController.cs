@@ -73,6 +73,8 @@ namespace YourStoryAPI.Controllers
             if (FindByMail(user.email) != null)
                 return BadRequest("User exist");
 
+            user.created_day = DateTime.Now;
+
             _context.Users.Add(user);
             _context.SaveChanges();
 
