@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit profile </title>
+</head>
+<body>
+    <!-- back -->
+    <a href="profile.html">
+        Back
+    </a>
+
+    <div> 
+        <h1> Edit profile </h1> 
+        
+        <input id="username" type="text" placeholder="New username">
+        <br>
+
+        <input id="avatar_url" type="text" placeholder="New avatar_url">
+        <br>
+
+        <button onclick="UpdateProfile()">
+            Save
+        </button>
+
+        <div id="notice"></div>
+    </div>
+    
+    <script src="config.js"></script>
+    <script>
+        const token = localStorage.getItem("token");
+
+        async function UpdateProfile()
+        {
+            document.getElementById("notice").innerText = "";
+            const username =
+                document.getElementById("username").value;
+
+            const avatar_url =
+                document.getElementById("avatar_url").value;
+
+            const response = await fetch(
+                `${URL}/User/profile`,
+                {
+                    method: "PUT",
+                    headers:
+                    {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`
+                    },
+
+                    body: JSON.stringify({
+                        users_name: username,
+                        avatar_url: avatar_url,
+                        email: "a@gmail.com",
+                        pass_word: "11111111"
+                    })
+                });
+
+            if(!response.ok)
+            {
+                console.log(await response.text());
+                document.getElementById("notice").innerText =
+                    "Update failed";
+                return;
+            }
+
+            document.getElementById("notice").innerText =
+                "Update completed";
+        }
+    </script>
+</body>
+</html>

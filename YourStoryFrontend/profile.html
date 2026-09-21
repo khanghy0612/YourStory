@@ -20,20 +20,58 @@
         </div>
         
         <!-- Avt -->
-        <img src="avt.png" alt ="Avatar" >
+        <img id="avatar" src="avt.png" alt ="Avatar" >
         <br>
 
         <!-- User name -->
-        <p> Username: </p>
+        <p> Username: 
+            <span id="username"></span>
+        </p>
 
         <!-- Email -->
-        <p> Email: </p>
+        <p> Email: 
+            <span id="email"></span>
+        </p>
 
         <!-- Edit Profile -->
-        <button> Edit Profile </button>
+        <a href="edit-profile.html">
+            <button> Edit Profile </button>
+        </a>
+        <br>
+        <a href="change-password.html">
+            <button> Change password </button>
+        </a>
         <br>
 
+        <!-- Notice -->
+         <div id="notice"></div>
     </div>
 
+    <script src="config.js"></script>
+
+    <script>
+        const token = localStorage.getItem("token");
+
+        async function LoadProfile()
+        {
+            const response = await fetch(`${URL}/User/profile`, { method : "GET",  headers : { Authorization : `Bearer ${token}` } } );
+
+            if( !response.ok ) 
+            {
+                document.getElementById("notice").innerText = "Please login again!";
+                return;
+            }
+
+            const data = await response.json();
+            console.log(data);
+
+            document.getElementById("username").innerText = data.users_name;
+            document.getElementById("email").innerText = data.email;
+            document.getElementById("avatar").src = data.avatar_url;
+        }
+
+        LoadProfile();
+    </script>
 </body>
+
 </html>

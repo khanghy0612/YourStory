@@ -81,8 +81,8 @@ LIST
 * [X] Sign-up API
 * [X] Store JWT (localStorage)
 
-* [ ] Authorization Header
-* [ ] Profile API
+* [] Authorization Header
+* [] Profile API
 
 * [ ] Journal API
 * [ ] List API

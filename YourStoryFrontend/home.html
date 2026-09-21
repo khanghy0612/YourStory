@@ -50,7 +50,7 @@
 
             <!-- Choose log out -->
             <div>
-                <button> Logout </button>
+                <button onclick="Logout()"> Log-out </button>
             </div>
         </div>
     </div>
@@ -58,6 +58,17 @@
     <script>
         const token = localStorage.getItem("token");
         console.log(token);
+
+        if(!token)
+        {
+            window.location.href = "login.html";
+        }
+
+        function Logout()
+        {
+            localStorage.removeItem("token");
+            window.location.href = "firstpage.html";
+        }
     </script>
 </body>
 </html>

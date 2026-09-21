@@ -110,9 +110,12 @@ namespace YourStoryAPI.Controllers
 
         //VIEW Profile
         [Authorize]
-        [HttpGet("{id}")]
-        public IActionResult ViewProfile( int id )
+        [HttpGet("profile")]
+        public IActionResult ViewProfile()
         {
+
+            int id = int.Parse(User.FindFirst("UserId")!.Value);
+
             User? user = FindById(id);
             if (user == null)
                 return NotFound();
@@ -130,12 +133,17 @@ namespace YourStoryAPI.Controllers
 
         //UPDATE profile
         [Authorize]
-        [HttpPut("{id}")]
-        public IActionResult UpdateProfile( int id, User newUser )
+        [HttpPut("profile")]
+        public IActionResult UpdateProfile( User newUser )
         {
+            int id = int.Parse(User.FindFirst("UserId")!.Value);
+
             User? user = FindById(id);
             if (user == null)
                 return NotFound();
+
+            if (string.IsNullOrWhiteSpace(newUser.users_name))
+                return BadRequest("Username cannot be empty");
 
             user.users_name = newUser.users_name;
             user.avatar_url = newUser.avatar_url;
@@ -153,9 +161,11 @@ namespace YourStoryAPI.Controllers
 
         //CHANGE password
         [Authorize]
-        [HttpPut("password/{id}")]
-        public IActionResult ChangePassword( int id, string oldpass, string newpass )
+        [HttpPut("password")]
+        public IActionResult ChangePassword( string oldpass, string newpass )
         {
+            int id = int.Parse(User.FindFirst("UserId")!.Value);
+
             User? user = FindById(id);
             if( user == null )
                 return NotFound();
