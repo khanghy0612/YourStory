@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using YourStoryAPI.Data;
 using YourStoryAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace YourStoryAPI.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class Lists_JournalsController : ControllerBase
@@ -14,7 +16,7 @@ namespace YourStoryAPI.Controllers
             _context = context;
         }
 
-        //CHECK
+        //CHECK List and Journal are Exist
         private bool CheckExist(Lists_Journals connect)
         {
             List? resultList = _context.Lists.FirstOrDefault(x => x.id == connect.lists_id);
@@ -29,6 +31,29 @@ namespace YourStoryAPI.Controllers
             return temp;
         }
 
+        //Get User Id
+        private int GetUserId()
+        {
+            return int.Parse( User.FindFirst("UserId")!.Value );
+        }
+
+        //Check List and Journal of User
+        private bool CheckOwner(Lists_Journals newConnect)
+        {
+            var resultList =
+                _context.Lists.FirstOrDefault(x => x.id == newConnect.lists_id);
+
+            var resultJournal =
+                _context.Journals.FirstOrDefault(x => x.id == newConnect.journals_id);
+
+            if (resultList!.users_id != GetUserId())
+                return false;
+
+            if (resultJournal!.users_id != GetUserId())
+                return false;
+
+            return true;
+        }
         
         //CONNECT a journal to a list
         [HttpPost]
@@ -36,6 +61,9 @@ namespace YourStoryAPI.Controllers
         {
             if (CheckExist(newConnect) == false)
                 return BadRequest("No list or no journal");
+
+            if (CheckOwner(newConnect) == false)
+                return Forbid();
 
             Lists_Journals? temp = FindAConnect(newConnect.lists_id, newConnect.journals_id);
             if (temp != null)
@@ -54,6 +82,12 @@ namespace YourStoryAPI.Controllers
             var temp = FindAConnect(listID, journalID);
             if (temp == null)
                 return NotFound("Not found a connect");
+
+            var connect = new Lists_Journals();
+            connect.lists_id = listID;
+            connect.journals_id = journalID;
+            if( CheckOwner(connect) == false )
+                    return Forbid();
 
             _context.L_J.Remove(temp);
             _context.SaveChanges();

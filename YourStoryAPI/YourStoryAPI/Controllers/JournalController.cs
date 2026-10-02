@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using YourStoryAPI.Models;
 using YourStoryAPI.Data;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace YourStoryAPI.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class JournalController : ControllerBase
@@ -23,13 +25,25 @@ namespace YourStoryAPI.Controllers
             return resultJournal;
         }
 
+        // Get this User id
+        private int GetUserId()
+        {
+            return int.Parse( User.FindFirst("UserId")!.Value );
+        }
+
         //SORT journals by day
         [HttpGet("sort/{order}")]
         public IActionResult Sort( string order )
         {
+            int userId = GetUserId();
+
+            if (order != "asc" && order != "desc")
+                return BadRequest("Order must be asc or desc");
+
             if (order == "asc")
-                return Ok(_context.Journals.OrderBy(x => x.posted_day).ToList() );
-            return Ok(_context.Journals.OrderByDescending(x => x.posted_day).ToList());
+                return Ok(_context.Journals.Where(x => x.users_id == userId ).OrderBy(x => x.posted_day).ToList() );
+
+            return Ok(_context.Journals.Where(x => x.users_id == userId).OrderByDescending(x => x.posted_day).ToList());
 
         }
 
@@ -37,7 +51,8 @@ namespace YourStoryAPI.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var journals = _context.Journals.ToList();
+            int userId = GetUserId();
+            var journals = _context.Journals.Where( x => x.users_id == userId).ToList();
             return Ok(journals);
         }
 
@@ -48,6 +63,8 @@ namespace YourStoryAPI.Controllers
             Journal? journal = Find(id);
             
             if( journal == null ) return NotFound("Not found");
+
+            if (journal.users_id != GetUserId()) return Forbid();
             
             return Ok( journal );
         }
@@ -56,6 +73,9 @@ namespace YourStoryAPI.Controllers
         [HttpPost]
         public IActionResult Create(Journal journal )
         {
+            journal.users_id = GetUserId();
+            journal.posted_day = DateTime.Now;
+
             _context.Journals.Add(journal);
             _context.SaveChanges();
 
@@ -69,6 +89,8 @@ namespace YourStoryAPI.Controllers
         {
             Journal? journal = Find(id);
             if( journal == null ) return NotFound("Not found");
+
+            if( journal.users_id != GetUserId() ) return Forbid();
 
             if (journal.is_draft == false) return BadRequest("This journal is not draft");
 
@@ -89,6 +111,9 @@ namespace YourStoryAPI.Controllers
             Journal? journal = Find(id);
             
             if(  journal == null ) return NotFound("Not found");
+
+            if (journal.users_id != GetUserId())
+                return Forbid();
 
             //Delete conect with lists
             List<Lists_Journals> connects = _context.L_J.Where(x => x.journals_id == id).ToList();
