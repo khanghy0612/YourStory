@@ -15,69 +15,81 @@
         </div>
 
         <div>
-            <h1>
-                Journals
-            </h1>
+            <h1> Journals </h1>
         </div>
         
         <!-- PUBLISHED -->
         <div>
-            <h2>
-                Published
-            </h2>
-        
-            <!-- Journal #1 -->
-            <div>
-                <h3> Journal#1 </h3>
-                <p> Day: 05/11/2026 </p>
-                <a href="view-journal.html"> View </a>
-                <br>
-                <button> Add to list </button>
-                <button> Delete </button>
-            </div>
-            <br>
+            <h2> Published </h2>
+            <div id="publishedContainer"> 
 
-            <!-- Journal #2 -->
-            <div>
-                <h3> Journal#2 </h3>
-                <p> Day: 12/09/2025 </p>
-                <a href="view-journal.html"> View </a>
-                <br>
-                <button> Add to list </button>
-                <button> Delete </button>
             </div>
-            <br>
+        
         </div>
 
         <hr>
 
         <!-- DRAFT -->
         <div>
-            <h2>
-                Draft
-            </h2>
-        
-            <!-- Draft #1 -->
-            <div>
-                <h3> Draft#1 </h3>
-                <p> Day: 05/11/2026 </p>
-                <a href="view-journal.html"> View </a>
-                <br>
-                <button> Add to list </button>
-                <button> Delete </button>
-            </div>
-            <br>
+            <h2> Draft </h2>
+            <div id="draftContainer"> 
 
-            <!-- Draft #2 -->
-            <div>
-                <h3> Draft#2 </h3>
-                <p> Day: 12/09/2025 </p>
-                <a href="view-journal.html"> View </a>
-                <br>
-                <button> Add to list </button>
-                <button> Delete </button>
             </div>
-            <br>
         </div>
+
+        <script src="config.js"></script>
+
+        <script>
+            const token = CheckLogin();
+            async function LoadJournals()
+            {
+                const response = await fetch(
+                    `${URL}/Journal` ,
+                    {
+                        headers :
+                        {
+                            "Authorization" : `Bearer ${token}`
+                        }
+                    } );
+
+                const journals = await response.json();
+
+                const publishedContainer =
+                    document.getElementById("publishedContainer");
+
+                const draftContainer =
+                    document.getElementById("draftContainer");
+
+                for (const journal of journals)
+                {
+                    const day = new Date(journal.posted_day).toLocaleDateString("vi-VN");
+
+                    if (journal.is_draft)
+                    {
+                        draftContainer.innerHTML += 
+                        `<div> 
+                            <h3> ${journal.title} </h3> 
+                            <p>${day}</p>
+                            <a href="view-journal.html?id=${journal.id}">
+                                View
+                            </a>
+                        </div>`;
+                    }
+                    else
+                    {
+                        publishedContainer.innerHTML +=
+                        `<div> 
+                            <h3> ${journal.title} </h3> 
+                            <p>${day}</p>
+                            <a href="view-journal.html?id=${journal.id}">
+                                View
+                            </a>
+                        </div>`;
+                    }
+                }
+            }
+
+            LoadJournals();
+        </script>
     </body>
     </html>

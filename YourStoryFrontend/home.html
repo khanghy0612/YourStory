@@ -55,20 +55,9 @@
         </div>
     </div>
 
+    <script src="config.js"></script>
     <script>
-        const token = localStorage.getItem("token");
-        console.log(token);
-
-        if(!token)
-        {
-            window.location.href = "login.html";
-        }
-
-        function Logout()
-        {
-            localStorage.removeItem("token");
-            window.location.href = "firstpage.html";
-        }
+        const token = CheckLogin();
     </script>
 </body>
 </html>

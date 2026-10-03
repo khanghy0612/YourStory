@@ -20,7 +20,7 @@
         </div>
         
         <!-- Avt -->
-        <img id="avatar" src="avt.png" alt ="Avatar" >
+        <img alt="Avatar" id="img" >
         <br>
 
         <!-- User name -->
@@ -50,7 +50,7 @@
     <script src="config.js"></script>
 
     <script>
-        const token = localStorage.getItem("token");
+        const token = CheckLogin();
 
         async function LoadProfile()
         {

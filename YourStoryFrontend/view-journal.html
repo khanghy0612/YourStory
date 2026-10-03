@@ -9,7 +9,7 @@
 <body>
     <!-- Back to Journals -->
     <div>
-        <a href="journals.html">
+        <a onclick="history.back()">
             Back
         </a>
     </div>
@@ -17,38 +17,89 @@
     <div>
         <!-- Title -->
         <div>
-            <h1> Viết cho A </h1>
+            <h1 id="title"></h1>
         </div>
 
         <!-- Img -->
         <div>
-            <img src="Image.img" alt="Journal Image">
+            <img alt="Journal Image" id="img" >
         </div>
 
         <!-- Day -->
         <div> 
-            <h3> 
-                13/09/2026
-            </h3>
+            <p id="day"></p>
         </div>
 
-        <!-- For you/others-->
-        <div>
-            <h3>
-                Gửi A,
-            </h3>
-        </div>
-
-        <!-- Content -->
-        <div>
-            <p>
-                Hôm nay là một ngày đẹp trời 
-            </p>
+        <div> 
+            <p id="content"></p>
         </div>
 
         <!-- Add to list / Delete -->
         <button> Add to list </button>
-        <button> Delete </button>
+        <button onclick="DeleteJournal()"> Delete </button>
     </div>
+
+    <script src="config.js"> </script>
+    <script>
+        const token = CheckLogin();
+
+        const params =
+            new URLSearchParams(window.location.search);
+
+        const id =
+            params.get("id");
+
+        async function LoadJournal()
+        {
+            const response = await fetch( 
+                `${URL}/Journal/${id}`, 
+                {
+                    method : "GET",
+                    headers : 
+                    {
+                        "Authorization" : `Bearer ${token}`
+                    }
+                }
+            );
+
+            const journal = await response.json();
+
+            document.getElementById("title").innerText = journal.title;
+            document.getElementById("content").innerText = journal.content;
+            document.getElementById("day").innerText = new Date(journal.posted_day).toLocaleDateString("vi-VN");
+            document.getElementById("img").src = journal.img_url;
+        }
+
+        LoadJournal();
+
+        async function DeleteJournal()
+        {
+            const confirmDelete =
+                confirm("Delete this journal?");
+
+            if (!confirmDelete)
+            {
+                return;
+            }
+
+            const response = await fetch(
+                `${URL}/Journal/${id}`,
+                {
+                    method: "DELETE",
+                    headers:
+                    {
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+            if (response.ok)
+            {
+                window.history.back();
+            }
+
+        }
+    </script>
 </body>
 </html>
