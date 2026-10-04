@@ -14,6 +14,14 @@
             </a>
         </div>
 
+        <button onclick="LoadJournals('desc')">
+            New to Old
+        </button>
+
+        <button onclick="LoadJournals('asc')">
+            Old to New
+        </button>
+
         <div>
             <h1> Journals </h1>
         </div>
@@ -41,10 +49,11 @@
 
         <script>
             const token = CheckLogin();
-            async function LoadJournals()
+
+            async function LoadJournals(order)
             {
                 const response = await fetch(
-                    `${URL}/Journal` ,
+                    `${URL}/Journal/sort/${order}` ,
                     {
                         headers :
                         {
@@ -55,16 +64,20 @@
                 const journals = await response.json();
 
                 const publishedContainer =
-                    document.getElementById("publishedContainer");
+                    document.getElementById("publishedContainer") ;
 
                 const draftContainer =
-                    document.getElementById("draftContainer");
+                    document.getElementById("draftContainer") ;
+
+                publishedContainer.innerHTML = "";
+                draftContainer.innerHTML = "";
 
                 for (const journal of journals)
                 {
                     const day = new Date(journal.posted_day).toLocaleDateString("vi-VN");
-
-                    if (journal.is_draft)
+                    
+                    // Draft
+                    if (journal.is_draft) 
                     {
                         draftContainer.innerHTML += 
                         `<div> 
@@ -73,23 +86,62 @@
                             <a href="view-journal.html?id=${journal.id}">
                                 View
                             </a>
+
+                            <a href="write-journal.html?id=${journal.id}">
+                                Edit
+                            </a>
+
+                            <button onclick="DeleteJournal(${journal.id})">
+                                Delete
+                            </button>
                         </div>`;
                     }
+
+                    // Published
                     else
                     {
                         publishedContainer.innerHTML +=
                         `<div> 
                             <h3> ${journal.title} </h3> 
                             <p>${day}</p>
+
                             <a href="view-journal.html?id=${journal.id}">
                                 View
                             </a>
-                        </div>`;
+
+                            <button onclick="DeleteJournal(${journal.id})">
+                                Delete
+                            </button>
+                            </div>`;
                     }
                 }
             }
 
-            LoadJournals();
+            LoadJournals("desc");
+
+            async function DeleteJournal(id)
+            {
+                const confirmDelete =
+                    confirm("Delete this journal?");
+
+                if (!confirmDelete)
+                {
+                    return;
+                }
+
+                const response = await fetch(
+                    `${URL}/Journal/${id}`,
+                    {
+                        method: "DELETE",
+                        headers:
+                        {
+                            "Authorization":
+                                `Bearer ${token}`
+                        }
+                    }
+                );
+                if( response.ok ) location.reload();
+            }
         </script>
     </body>
     </html>

@@ -76,16 +76,35 @@ LIST
 
 ### 7. Frontend + Backend Integration
 
-* [X] Fetch API
+
 * [X] Login API
 * [X] Sign-up API
 * [X] Store JWT (localStorage)
 
-* [] Authorization Header
-* [] Profile API
+* [X] Authorization Header
 
-* [ ] Journal API
-* [ ] List API
+* [X] Journal API
+    [X] Read Journal List
+    [X] View Journal Detail
+    [X] Delete Journal
+
+    [X] Create Journal
+    [x] Save Draft
+    [x] Publish Journal
+    [X] Edit Draft
+    [X] Publish Draft
+    [X] Sort Journal 
+
+* [~] List API
+
+	[ ] Create List
+	[ ] Read List
+	[ ] Rename List
+	[ ] Delete List
+	[ ] View Journals in List
+	[ ] Add Journal to List
+	[ ] Delete Journal from a list
+
 
 * [ ] Error Handling
 * [ ] Loading State

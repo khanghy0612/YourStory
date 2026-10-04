@@ -16,6 +16,8 @@ namespace YourStoryAPI.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Lists_Journals>().ToTable("Lists_Journals");
+
             modelBuilder.Entity<Lists_Journals>()
                 .HasKey(x => new
                 {
