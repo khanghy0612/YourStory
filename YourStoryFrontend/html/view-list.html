@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View List</title>
+</head>
+
+<body>
+
+    <!-- Back to Lists -->
+    <div>
+        <a onclick="history.back()">
+            Back
+        </a>
+    </div>
+
+    <div>
+        <!-- List Name -->
+        <div>
+            <h1 id="ListName"></h1>
+        </div>
+
+        <!-- Created Day -->
+        <div>
+            <h2 id="CreatedDay"></h2>
+        </div>
+
+        <button onclick="LoadList('desc')">
+            New to Old
+        </button>
+
+        <button onclick="LoadList('asc')">
+            Old to New
+        </button>
+
+        <!-- Add Journal -->
+        <a href="add-journal-to-list.html" id="AddJournalLink"> Add Journal </a>
+
+        <!-- Journals of list -->
+        <div id="JournalsContainer"> </div>
+
+        
+        <!-- Rename / Delete -->
+        <button> Rename </button>
+        <button> Delete </button>
+    </div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/view-list.js"></script>
+</body>
+</html>

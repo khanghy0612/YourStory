@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Journal</title>
+</head>
+
+<body>
+    <!-- Back to Journals -->
+    <div>
+        <a onclick="history.back()">
+            Back
+        </a>
+    </div>
+
+    <div>
+        <!-- Title -->
+        <div>
+            <h1 id="title"></h1>
+        </div>
+
+        <!-- Img -->
+        <div>
+            <img alt="Journal Image" id="img" >
+        </div>
+
+        <!-- Day -->
+        <div> 
+            <p id="day"></p>
+        </div>
+
+        <div> 
+            <p id="content"></p>
+        </div>
+
+        <!-- Add to list / Delete -->
+        <button> Add to list </button>
+        <button onclick="DeleteJournal()"> Delete </button>
+    </div>
+
+    <script src="../js/config.js"> </script>
+    <script src="../js/view-journal.js"></script>
+</body>
+</html>

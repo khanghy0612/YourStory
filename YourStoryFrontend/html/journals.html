@@ -1,0 +1,52 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Journals</title>
+    </head>
+
+    <body>
+        <!-- Back to home -->
+        <div>
+            <a href="home.html">
+                Back
+            </a>
+        </div>
+
+        <button onclick="LoadJournals('desc')">
+            New to Old
+        </button>
+
+        <button onclick="LoadJournals('asc')">
+            Old to New
+        </button>
+
+        <div>
+            <h1> Journals </h1>
+        </div>
+        
+        <!-- PUBLISHED -->
+        <div>
+            <h2> Published </h2>
+            <div id="publishedContainer"> 
+
+            </div>
+        
+        </div>
+
+        <hr>
+
+        <!-- DRAFT -->
+        <div>
+            <h2> Draft </h2>
+            <div id="draftContainer"> 
+
+            </div>
+        </div>
+
+        <script src="../js/config.js"></script>
+
+        <script src="../js/journals.js"></script>
+    </body>
+    </html>

@@ -1,26 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Change password</title>
-</head>
-<body>
-    <a href="profile.html"> Back </a>
-
-    <div>
-        <h1> Change password </h1>
-        <input id="oldpass" type="password" placeholder="Old password">
-        <br>
-        <input id="newpass" type="password" placeholder="New password">
-        <br>
-
-        <button onclick="ChangePassword()"> Change </button>
-        <div id="notice"></div>
-    </div>
-    
-    <script src="config.js"></script>
-    <script>
         const token = localStorage.getItem("token");
 
         async function ChangePassword()
@@ -46,6 +23,3 @@
 
             document.getElementById("notice").innerText = "Password changed";
         }
-    </script>
-</body>
-</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lists</title>
+</head>
+
+<body>
+    <!-- Back to home -->
+    <div>
+        <a href="home.html">
+            Back
+        </a>
+    </div>
+
+    <button onclick="LoadLists('desc')">
+        New to Old
+    </button>
+
+    <button onclick="LoadLists('asc')">
+        Old to New
+    </button>
+
+    <div>
+        <h1>
+            Lists
+        </h1>
+    </div>
+
+    <div>
+        <h2>
+            Create List
+        </h2>
+        <input id="listName" type="text" placeholder="A new List name">
+        <button onclick="CreateList()"> 
+            Create List
+        </button>
+    </div>
+
+    <div id="listContainer"></div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/lists.js"></script>
+
+</body>
+</html>

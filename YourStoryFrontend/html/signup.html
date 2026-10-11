@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+</head>
+<body>
+    <div>
+        <div>
+            <!-- To login -->
+            <a href="login.html">
+                Already have an account? Login
+            </a>
+        </div>
+        
+        <div>
+            <h1> 
+                Sign up 
+            </h1>
+        </div>
+
+        <form>
+            <!-- Email -->
+            <input  id="email"
+                    type="email" placeholder="Email">
+            <br>
+
+            <!-- User name -->
+            <input  id="username"
+                    type = "text" placeholder="Username">
+            <br>
+
+            <!-- Pass -->
+            <input  id="password"
+                    type = "password" placeholder="Password"> 
+            <br>
+            
+            <!-- Sign up button -->
+            <button type="button"
+                    onclick="Signup()">
+                    Sign up
+            </button>
+
+            <!-- Notice text -->
+            <div id="notice"></div>
+        </form>
+
+    </div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/signup.js"></script>
+</body>
+</html>
