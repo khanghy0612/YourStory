@@ -95,19 +95,20 @@ LIST
     [X] Publish Draft
     [X] Sort Journal 
 
-* [~] List API
+* [X] List API
 
-	[ ] Create List
-	[ ] Read List
-	[ ] Rename List
-	[ ] Delete List
-	[ ] View Journals in List
-	[ ] Add Journal to List
-	[ ] Delete Journal from a list
-
+	[X] Create List
+	[X] Read List
+	[X] Rename List
+	[X] Delete List
+	[X] View Journals in List
+	[X] Add Journal to List
+	[X] Delete Journal from a list
 
 * [ ] Error Handling
 * [ ] Loading State
+* [ ] Chuyển sang tiếng Việt
+* [ ] Css
 
 ### 8. Hoàn thiện sản phẩm
 

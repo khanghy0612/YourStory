@@ -2,20 +2,39 @@
 
     async function LoadProfile()
     {
-        const response = await fetch(`${URL}/User/profile`, { method : "GET",  headers : { Authorization : `Bearer ${token}` } } );
-
-        if( !response.ok ) 
+        try
         {
-            document.getElementById("notice").innerText = "Please login again!";
-            return;
+            const response = await fetch(
+            `${URL}/User/profile`, 
+            { method : "GET",  
+              headers: 
+              { 
+                "Authorization" : `Bearer ${token}` 
+              } 
+            } );
+            const data = await HandleResponse(response);
+            document.getElementById("username").innerText = data.users_name;
+            document.getElementById("email").innerText = data.email;
+            document.getElementById("avatar").src = data.avatar_url;
         }
+        catch( error )
+        {
+            if (error.message === "Failed to fetch") 
+                document.getElementById("notice").innerText = "Chưa thể kết nối với máy chủ."; 
 
-        const data = await response.json();
-        console.log(data);
-
-        document.getElementById("username").innerText = data.users_name;
-        document.getElementById("email").innerText = data.email;
-        document.getElementById("avatar").src = data.avatar_url;
+            else if (error.status === 401)
+            {
+                localStorage.removeItem("token");
+                document.getElementById("notice").innerText = "Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại.";
+            }
+                    
+            else if (error.status === 404) 
+                document.getElementById("notice").innerText = "Không tìm thấy thông tin cá nhân."; 
+            
+            else 
+                document.getElementById("notice").innerText = "Đã xảy ra lỗi.";
+        }
+        
     }
 
     LoadProfile();

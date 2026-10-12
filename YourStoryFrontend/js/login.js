@@ -3,18 +3,24 @@
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
 
-        const response = await fetch(`${URL}/User/login?username=${username}&pass=${password}`, { method: "POST"});
-
-        if( !response.ok )
-        {
-            document.getElementById("notice").innerText = "Invalid username or password";
-            return;
-        }
-
         document.getElementById("notice").innerText = "";
-        const data = await response.json();
 
-        localStorage.setItem( "token", data.token );
+        try
+        {
+            const response = await fetch(`${URL}/User/login?username=${username}&pass=${password}`, { method: "POST"});
+            const data = await HandleResponse(response);
+            localStorage.setItem("token", data.token );
+            window.location.href = "home.html";
+        }
+        catch(error )
+        {
+            if (error.message === "401")
+                document.getElementById("notice").innerText = "Sai tên đăng nhập hoặc mật khẩu.";
 
-        window.location.href = "home.html";
+            else if (error.message === "Failed to fetch")
+                document.getElementById("notice").innerText = "Chưa thể kết nối với máy chủ.";
+            
+            else
+                document.getElementById("notice").innerText = "Đã xảy ra lỗi.";
+        }
     }
