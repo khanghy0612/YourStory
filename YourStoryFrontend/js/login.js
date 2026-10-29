@@ -10,6 +10,7 @@
             const response = await fetch(`${URL}/User/login?username=${username}&pass=${password}`, { method: "POST"});
             const data = await HandleResponse(response);
             localStorage.setItem("token", data.token );
+            localStorage.setItem("username", data.users_name );
             window.location.href = "home.html";
         }
         catch(error )

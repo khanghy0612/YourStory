@@ -105,10 +105,11 @@ LIST
 	[X] Add Journal to List
 	[X] Delete Journal from a list
 
-* [ ] Error Handling
-* [ ] Loading State
+* [X] Error Handling
+* [ ] CSS
+	[X] first-page
 * [ ] Chuyển sang tiếng Việt
-* [ ] Css
+* [ ] Loading State
 
 ### 8. Hoàn thiện sản phẩm
 
@@ -117,8 +118,6 @@ LIST
 * [ ] Deploy Frontend
 * [ ] Test End-to-End
 * [ ] Viết README hoàn chỉnh
-* [ ] Chụp ảnh demo
-* [ ] Ghi video demo
 
 ### 9. Nâng cấp Backend (Version 2)
 

@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First page</title>
+    <title>YourStory</title>
+    <link rel="stylesheet" href="../css/firstpage.css">
 </head>
 
 <body>
-    <div>
-        <div>
+    <div class="welcome-container">
+        <div class="welcome-header">
             <h1> YOUR STORY </h1>
+            <p> "Cho niềm vui, cho nỗi buồn, cho cảm xúc và những tâm tư." </p>
         </div>
-        <div>
+        <div class="log-buttons">
             <!-- Log in -->
-            <a href="login.html"> 
-                Login
-            </a>
+            <button class="log-button" type="button" onclick="window.location.href='login.html'">
+                Đăng nhập
+            </button>
             <br>
             <!-- Sign up -->
-            <a href="signup.html">
-                Sign up
-            </a>
+            <button class="log-button" type="button" onclick="window.location.href='signup.html'">
+                Đăng ký 
+            </button>
         </div>
     </div>
 </body>

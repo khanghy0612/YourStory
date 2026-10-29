@@ -10,62 +10,60 @@
     <div>
         <!-- Back to home -->
         <div>
-            <a href="home.html">
-                Back
-            </a>
+            <!-- Back -->
+            <button type="button" onclick="window.location.href='home.html'" >
+                Quay lại
+            </button>
         </div>
 
         <div>
-            <h1> Write a journal </h1>
+            <h1> Viết </h1>
         </div>
 
         <!-- Notice -->
         <div id="notice"></div>
         
         <form>
-            <!-- For you/others -->
+            <!-- Label -->
             <div>
-                <label>Audience</label>
-                <br>
-
                 <input type="radio" id="forYou" name="audience" checked>
-                <label for="forYou">For You</label>
+                <label for="forYou">Cho tui</label>
 
                 <input type="radio" id="forOthers" name="audience">
-                <label for="forOthers">For Others</label>
+                <label for="forOthers">Cho người ta</label>
             </div>
-            
+            <br>
 
             <!-- Add img -->
             <div>
-                <label for="img"> Add Image</label>
+                <label for="img_url"> Thêm hình </label>
                 <br>
-                <input type="text" id="img_url" >
+                <input type="text" id="img_url" placeholder="URL của hình" >
             </div>
 
             <!-- Title -->
             <div>
-                <label for="title"> Journal Title </label>
+                <label for="title"> Tiêu đề </label>
                 <br>
-                <input type="text" id="title"> 
+                <input type="text" id="title" placeholder="..."> 
 
             </div>
 
             <!-- Content -->
             <div>
-                <label for="content"> Content </label>
+                <label for="content"> Nội dung </label>
                 <br>
-                <textarea placeholder="Write here" id="content"> </textarea>
+                <textarea id="content" placeholder="..."></textarea>
             </div>
 
             <!-- Draft button -->
             <div>
-                <button type="button" onclick="CreateJournal(true)"> Save Draft </button>
+                <button type="button" onclick="CreateJournal(true)"> Lưu bản nháp </button>
             </div>
 
             <!-- Publish button -->
             <div>
-                <button type="button" onclick="CreateJournal(false)"> Publish </button>
+                <button type="button" onclick="CreateJournal(false)"> Đăng </button>
             </div>
         </form>
     </div>
