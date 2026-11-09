@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1600"
+     height="40"
+     viewBox="0 0 1600 40">
+
+    <path
+        d="M0 35 Q200 34 400 35 T800 35 Q1100 36 1300 35 T1600 35"
+        fill="none"
+        stroke="#806D53"
+        stroke-width="1.2"
+        opacity="0.35"
+    />
+</svg>

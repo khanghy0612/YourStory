@@ -4,49 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="../css/home.css">
 </head>
 
 <body>
-    <div>
-        <div>
-            <h1> YourStory </h1>
-        </div>
+        <section class="welcome-section">
+            <h1> Your Story </h1>
+            <p id="hello"></p>
+        </section>
         
-        <!-- Welcome -->
-        <p id="hello"></p>
+        <div class="buttons">
+            <!-- main buttons -->
+            <div class="main-buttons" > 
 
-        <div>
-            <!-- Write -->
-            <button type="button" onclick="window.location.href='write-journal.html'">
-                Viết   
-            </button>
-            <br>
+                <!-- Write -->
+                <button class="main-button" id="write-button" type="button" onclick="window.location.href='write-journal.html'">
+                    ✎ Viết gì đó !
+                </button>
 
-            <!-- View Journals -->
-            <button type="button" onclick="window.location.href='journals.html'">
-                Xem 
-            </button>
-            <br>
+                <div class="side-buttons">
+                    <button class="main-button" id="view-button" type="button" onclick="window.location.href='journals.html'">
+                        Đọc
+                    </button>
 
-            <!-- View Lists -->
-            <button type="button" onclick="window.location.href='lists.html'">
-                Danh sách 
-            </button>
-            <br>
+                    <button class="main-button" id="list-button" type="button" onclick="window.location.href='lists.html'">
+                        Danh sách
+                    </button>
+                </div> 
+            </div>
 
-            <!-- View Profile -->
-            <button type="button" onclick="window.location.href='profile.html'">
-                Xem thông tin 
-            </button>
-            <br><br>
 
-            <!-- Choose log out -->
-            <button onclick="Logout()"> 
-                Đăng xuất 
-            </button>
-        
+            <div class="second-buttons" >
+                <!-- View Profile -->
+                <button id="profile-button" type="button" onclick="window.location.href='profile.html'">
+                    Xem thông tin 
+                </button>
+
+                <!-- Choose log out -->
+                <button id="logout-button" onclick="Logout()"> 
+                    Đăng xuất 
+                </button>
+            </div>
         </div>
-    </div>
 
     <script src="../js/config.js"></script>
     <script src="../js/home.js"></script>

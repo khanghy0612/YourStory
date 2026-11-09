@@ -4,43 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="../css/login.css" >
 </head>
 
 <body>
+    <div class="back-section">
+        <button class="back-button" type="button" onclick="window.location.href='firstpage.html'">
+            Quay lại
+        </button>
+   </div>
 
-    <div>
-        <div>
-            <!-- Back -->
-            <button type="button" onclick="window.location.href='firstpage.html'" >
-                Quay lại
-            </button>
+    <div class="login-container">
+        <div class="login-title">
+            <h1>Đăng nhập</h1>
         </div>
 
-        <div>
-            <h1> Đăng nhập </h1>
-        </div>
-        
-        <form id="loginForm">
-            <!-- User name -->
-            <input id ="username" type = "text" placeholder="Tên đăng nhập">
-            <br>
+        <form id="login-form" class="login-form">
 
-            <!-- Pass word -->
-            <input id ="password"  type = "password" placeholder="Mật khẩu"> 
-            <br>
-            
-            <!-- Login button -->
-            <button type="button" onclick= "Login()" >
+            <input  id="username" type="text" placeholder="Tên đăng nhập">
+
+            <input  id="password" type="password" placeholder="Mật khẩu">
+
+            <button id="login-button" type="button" onclick="Login()">
                 Đăng nhập
             </button>
 
-            <!-- Notice-->
             <div id="notice"></div>
         </form>
 
     </div>
 
     <script src="../js/config.js"></script>
-    <script src="../js/login.js"> </script>
+    <script src="../js/login.js"></script>
 </body>
 </html>

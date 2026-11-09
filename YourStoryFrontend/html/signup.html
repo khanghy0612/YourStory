@@ -4,46 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign up</title>
+    <link rel="stylesheet" href="../css/signup.css">
 </head>
 <body>
-    <div>
-        <div>
-            <!-- Back -->
-            <button type="button" onclick="window.location.href='firstpage.html'" >
+        <div class="back-section">
+            <button class="back-button" type="button" onclick="window.location.href='firstpage.html'">
                 Quay lại
             </button>
         </div>
         
-        <div>
-            <h1> 
-                Đăng ký tài khoản
+        <div class="signup-container">
+            <h1 class="signup-title"> 
+                Đăng ký 
             </h1>
+
+            <form class="signup-form">
+                <!-- Email -->
+                <input  id="email" type="email" placeholder="Email">
+
+                <!-- User name -->
+                <input  id="username" type="text" placeholder="Tên tài khoản">
+
+                <!-- Pass -->
+                <input  id="password" type = "password" placeholder="Mật khẩu"> 
+
+                <!-- Sign up button -->
+                <button id="signup-button" type="button" onclick="Signup()">
+                        Đăng ký 
+                </button>
+
+                <!-- Notice text -->
+                <div id="notice"></div>
+            </form>
         </div>
 
-        <form>
-            <!-- Email -->
-            <input  id="email"
-                    type="email" placeholder="Email">
-            <br>
-
-            <!-- User name -->
-            <input  id="username" type="text" placeholder="Tên tài khoản">
-            <br>
-
-            <!-- Pass -->
-            <input  id="password" type = "password" placeholder="Mật khẩu"> 
-            <br>
-            
-            <!-- Sign up button -->
-            <button type="button" onclick="Signup()">
-                    Đăng ký 
-            </button>
-
-            <!-- Notice text -->
-            <div id="notice"></div>
-        </form>
-
-    </div>
 
     <script src="../js/config.js"></script>
     <script src="../js/signup.js"></script>

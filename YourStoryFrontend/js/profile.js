@@ -19,6 +19,7 @@
         }
         catch( error )
         {
+            console.error(error);
             if (error.message === "Failed to fetch") 
                 document.getElementById("notice").innerText = "Chưa thể kết nối với máy chủ."; 
 

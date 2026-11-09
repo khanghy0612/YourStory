@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap');
+
+body {
+    box-sizing: border-box;
+    font-family: 'Lora', sans-serif, monospace ;
+    margin: 0;
+    padding-top: 8vh;
+    padding-bottom: 10vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background-color: #DDCEB2 ;
+
+    background-image: 
+        linear-gradient(
+            to bottom left,
+            rgba(255, 248, 225, 0.45) 0%,
+            rgba(255, 248, 225, 0.20) 35%,
+            rgba(120, 90, 55, 0.08) 65%,
+            rgba(100, 70, 40, 0.30) 100%
+        ),  
+        url('../assets/lined-paper.svg');
+    background-repeat: no-repeat, repeat;
+    background-size: 100% 100%, 100% 40px;
+}
+
+.welcome-section{
+    text-align: center;
+    align-self: center;
+}
+
+.welcome-section h1{
+    font-size: 70px;
+    font-weight: 650;
+    font-style: italic;
+    color: #30251F;
+    text-shadow: 1px 1px 1px #30252F;
+    letter-spacing: 0.8vh;
+    margin-bottom: 3vh;
+}
+
+.welcome-section p {
+    font-size: 18px;
+    font-family: 'Lora', sans-serif, monospace ;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0.2vh;
+    margin-top: 5px;
+}
+
+.buttons{
+    margin-top: 5vh;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.main-buttons {
+    display: flex;
+    align-items: stretch;
+    gap: 6vh;
+}
+
+.main-button {
+    font-weight: 530;
+    width: 32vh;
+    height: 8vh;
+    padding: 10px;
+    font-size: 2vh;
+    letter-spacing: 0.1vh;
+    border-radius: 2vh;
+    cursor: pointer;
+    appearance: none ;
+    color: rgb(0, 0, 0);
+    background-color: #F0E5CC;
+    border: 2px solid #060706;
+    transition: all 0.12s ease;
+    grid-column: span 2;
+}
+
+#write-button {
+     
+}
+
+
+.side-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+#view-button,
+#list-button {
+    width: 42vh;
+    height: 9vh;
+    /* flex: 1; */
+}
+
+
+
+.second-buttons {
+    position: absolute;
+    top: 3vh;
+    right: 4vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+    margin-top: 0;
+}
+
+#profile-button,
+#logout-button {
+    font-weight: 530;
+    width: 26vh;
+    height: 5vh;
+    padding: 10px;
+    font-size: 1.8vh;
+    letter-spacing: 0.1vh;
+    border-radius: 2vh;
+    cursor: pointer;
+    appearance: none ;
+    color: rgb(0, 0, 0);
+    background-color: #f0e5cc;
+    border: 2px solid #060706;
+    transition: all 0.12s ease;
+}
+
+.main-button:hover,
+#profile-button:hover,
+#logout-button:hover {
+    /* background-color: #F0E5CC; */
+    transform: translateY(-3px);
+}
+
+.main-button:active,
+#profile-button:active,
+#logout-button:active {
+    transform: scale(0.98) translateY(2px);
+}

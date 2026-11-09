@@ -1,15 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap');
 
 body {
+    box-sizing: border-box;
     font-family: 'Lora', sans-serif, monospace ;
     margin: 0;
-    padding-top: 12vh;
+    padding-top: 8vh;
     padding-bottom: 10vh;
     min-height: 100vh;
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    background-color: #D8C6A5 ;
+    background-color: #DDCEB2 ;
+
+    background-image: 
+        linear-gradient(
+            to bottom left,
+            rgba(255, 248, 225, 0.45) 0%,
+            rgba(255, 248, 225, 0.20) 35%,
+            rgba(120, 90, 55, 0.08) 65%,
+            rgba(100, 70, 40, 0.30) 100%
+        ),  
+        url('../assets/lined-paper.svg');
+    background-repeat: no-repeat, repeat;
+    background-size: 100% 100%, 100% 40px;
 }
 
 .welcome-container {
@@ -22,7 +35,7 @@ body {
 
 .welcome-header h1 {
     /* font-family: Georgia, 'Times New Roman', serif; */
-    font-size: 64px;
+    font-size: 70px;
     font-weight: 650;
     font-style: italic;
     color: #30251F;
@@ -41,32 +54,34 @@ body {
 }
 
 .log-buttons {
-    margin-top: 6vh;
+    margin-top: 13vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 25px;
 }
 
 .log-button {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 480;
-    width: 300px;
-    height: 70px  ;
+    /* font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    font-weight: 530;
+    width: 42vh;
+    height: 9vh  ;
     padding: 12px;
-    font-size: 25px;
+    font-size: 2.3vh;
+    letter-spacing: 0.1vh;
     border-radius: 2vh;
     cursor: pointer;
     appearance: none ;
-    color: black;
-    background-color: beige;
+    color: #FAF6EB;
+    background-color: #A18468;
     border: 2px solid #060706;
-
     transition: all 0.12s ease;
 }
 
 .log-button:hover {
-    transform: translateY(-1px);
+    background-color: #FAF6EB;
+    color:black;
 }
 
 .log-button:active {
