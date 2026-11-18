@@ -17,10 +17,13 @@ namespace YourStoryAPI.Controllers
         private readonly YourStoryDbContext _context;
         private readonly IConfiguration _configuration;
 
-        public UserController(YourStoryDbContext context, IConfiguration configuration)
+        private readonly IWebHostEnvironment _environment;
+
+        public UserController(YourStoryDbContext context, IConfiguration configuration, IWebHostEnvironment environment)
         {
             _context = context;
             _configuration = configuration;
+            _environment = environment;
         }
 
         // CREATE JWT TOKEN
@@ -132,6 +135,27 @@ namespace YourStoryAPI.Controllers
                 });
         }
 
+        //RENAME
+        [Authorize]
+        [HttpPut("rename")]
+        public IActionResult RenameUser( string newName )
+        {
+            int id = int.Parse(User.FindFirst("UserId")!.Value);
+
+            User? user = FindById(id);
+            if (user == null)
+                return NotFound();
+
+            if (string.IsNullOrWhiteSpace(newName))
+                return BadRequest();
+            
+            user.users_name = newName;
+            _context.SaveChanges();
+
+            return Ok(new { users_name = user.users_name });
+        }
+
+
         //UPDATE profile
         [Authorize]
         [HttpPut("profile")]
@@ -179,6 +203,69 @@ namespace YourStoryAPI.Controllers
 
             return Ok("Completed");
         }
-        
+
+        //Add Image
+        [Authorize]
+        [HttpPut("avatar")]
+        public async Task<IActionResult> UploadAvatar(IFormFile file)
+        {
+            // Get user ID
+            int id = int.Parse(User.FindFirst("UserId")!.Value);
+
+            User? user = FindById(id);
+
+            if (user == null)
+                return NotFound();
+
+            // Check file
+            if (file == null || file.Length == 0)
+                return BadRequest("No file selected");
+
+            // Limit file size: 5MB
+            if (file.Length > 5 * 1024 * 1024)
+                return BadRequest("File is too large");
+
+            // Check extension
+            string[] allowedExtensions =
+            {
+                ".jpg", ".jpeg", ".png", ".webp"
+            };
+
+            string extension = Path.GetExtension(file.FileName).ToLowerInvariant();
+
+            if (!allowedExtensions.Contains(extension))
+                return BadRequest("Invalid image format");
+
+            // Create folder
+            string folder = Path.Combine(
+                _environment.WebRootPath,
+                "images",
+                "avatars"
+            );
+
+            Directory.CreateDirectory(folder);
+
+            // Generate filename
+            string fileName = Guid.NewGuid().ToString() + extension;
+
+            string filePath = Path.Combine(folder, fileName);
+
+            // Save image
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            // Update database
+            user.avatar_url = "/images/avatars/" + fileName;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                user.avatar_url
+            });
+        }
+
     }
 }

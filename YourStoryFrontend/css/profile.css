@@ -1,0 +1,258 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lora', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    padding: 8vh 5vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #DDCEB2;
+    background-image:
+        linear-gradient(
+            to bottom left,
+            rgba(255, 248, 225, 0.45) 0%,
+            rgba(255, 248, 225, 0.20) 35%,
+            rgba(120, 90, 55, 0.08) 65%,
+            rgba(100, 70, 40, 0.30) 100%
+        ),
+        url('../assets/lined-paper.svg');
+
+    background-repeat: no-repeat, repeat;
+    background-size: 100% 100%, 100% 40px;
+}
+
+button {
+    font-family: inherit;
+}
+
+/* Back button */
+.back-section {
+    position: absolute;
+    top: 3vh;
+    left: 4vh;
+}
+
+.back-button {
+    font-family: 'Lora', sans-serif;
+    font-size: 1.6vh;
+    padding: 8px 20px;
+
+    border: 2px solid #060706;
+    border-radius: 2vh;
+    background-color: #F0E5CC;
+    cursor: pointer;
+
+    transition: all 0.12s ease;
+}
+
+/* Profile container */
+.profile-container {
+    width: 65vh;
+    max-width: 90vw;
+    padding: 4vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+
+    background-color: rgba(240, 229, 204, 0.65);
+    border: 2px solid #6B5848;
+    border-radius: 2vh;
+}
+
+/* Heading */
+.profile-Header {
+    font-size: 4vh;
+    font-weight: 600;
+    font-style: italic;
+    letter-spacing: 0.4vh;
+    color: #30251F;
+    margin: 0 0 1vh;
+}
+
+/* Profile information section */
+.profile-info-section {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 6vh;
+}
+
+/* Avatar section */
+.avatar-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vh;
+
+    flex-shrink: 0;
+}
+
+/* Avatar */
+#avatar {
+    width: 22vh;
+    height: 22vh;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #6B5848;
+    background-color: #DDCEB2;
+}
+
+.user-info {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info {
+    width: 100%;
+    font-size: 1.5vh;
+    font-weight: 600;
+    color: #30251F;
+    margin: 0.5vh 0;
+}
+
+/* Buttons */
+.profile-container button {
+    font-family: 'Lora', sans-serif;
+    font-weight: 500;
+    font-size: 1.3vh;
+    letter-spacing: 0.05vh;
+
+    min-width: 20vh;
+    padding: 1vh 2vh;
+
+    border: 2px solid #060706;
+    border-radius: 2vh;
+    background-color: #F0E5CC;
+    color: #000;
+    cursor: pointer;
+
+    transition: all 0.12s ease;
+}
+
+#upload-avatar-button {
+    width: 15vh;
+    min-width: 0;
+}
+
+.profile-actions {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5vh;
+}
+
+.profile-actions button {
+    width: 15vh;
+    min-width: 0;
+    flex: none;
+}
+
+/* Rename section */
+.username-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3vh;
+}
+
+.username-display {
+    display: flex;
+    align-items: center;
+    gap: 5vh;
+}
+
+#username {
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Rename input */
+#new-username {
+    font-family: 'Lora', serif;
+    font-size: 1.5vh;
+    color: #060706;
+
+    background-color: #F0E5CC;
+    border: 2px solid #060706;
+    border-radius: 1vh;
+
+    padding: 1vh 1.5vh;
+    width: 22vh;
+    outline: none;
+}
+
+#new-username:focus {
+    border-color: #060706;
+}
+
+#Save-button,
+#Cancel-button {
+    margin-top: 1.5vh;
+}
+
+/* Rename buttons */
+#rename-button,
+#rename-section button {
+    min-width: 0;
+    width: 11vh;
+
+    font-size: 1.2vh;
+    font-weight: 600;
+    padding: 0.6vh 0.8vh;
+
+    border: 2px solid #060706;
+    border-radius: 1vh;
+
+    background-color: #F0E5CC;
+    color:  #060706;
+
+    cursor: pointer;
+    transition: all 0.12s ease;
+}
+
+
+#rename-section {
+    align-items: center;
+    gap: 1vh;
+    flex-wrap: wrap;
+}
+
+.back-button:hover,
+#rename-button:hover,
+.profile-container button:hover,
+#Save-button:hover,
+#Cancel-button:hover {
+    color: #FAF6EB;
+    background-color: #A18468;
+}
+
+.back-button:active,
+#rename-button:active,
+.profile-container button:active {
+    transform: scale(0.98) translateY(2px);
+}
+
+/* Notice */
+#notice {
+    font-size: 1.5vh;
+    color: #6B3025;
+    text-align: center;
+}
+

@@ -25,6 +25,10 @@ body {
     background-size: 100% 100%, 100% 40px;
 }
 
+button {
+    font-family: inherit;
+}
+
 .welcome-container {
     text-align: center;
 }

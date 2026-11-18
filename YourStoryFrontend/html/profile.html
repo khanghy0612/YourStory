@@ -4,47 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
+    <link rel="stylesheet" href="../css/profile.css">
 </head>
 
 <body>
-    <div>
-        <div>
-            <!-- Back to home -->
-            <a href="home.html">
-                Back
-            </a>
-        </div>
+    <div class="back-section">
+        <button class="back-button" type="button" onclick="window.location.href='home.html'">
+            Quay lại
+        </button>
+    </div>
         
-        <div>
-            <h1> Profile </h1>
-        </div>
+    <div class="profile-container">
+        <!-- <div>
+            <h1 class="profile-Header"> Profile </h1>
+        </div> -->
         
-        <!-- Avt -->
-        <img id="avatar" alt="Avatar">
-        <br>
+        <div class="profile-info-section">
 
-        <!-- User name -->
-        <p> Username: 
-            <span id="username"></span>
-        </p>
+            <!-- Avatar -->
+            <div class="avatar-section">
+                <img id="avatar" alt="Avatar" width="150">
 
-        <!-- Email -->
-        <p> Email: 
-            <span id="email"></span>
-        </p>
+                <input type="file" id="avatar-input" accept="image/*" hidden>
 
-        <!-- Edit Profile -->
-        <a href="edit-profile.html">
-            <button> Edit Profile </button>
-        </a>
-        <br>
-        <a href="change-password.html">
-            <button> Change password </button>
-        </a>
-        <br>
+                <button id="upload-avatar-button" type="button"
+                    onclick="document.getElementById('avatar-input').click()">
+                    Chọn ảnh
+                </button>
+
+                <div class="profile-actions">
+                    <button class="profile-button" type="button"
+                        onclick="window.location.href='change-password.html'">
+                        Đổi mật khẩu
+                    </button>
+                </div>
+                
+            </div>
+
+            <!-- User information -->
+            <div class="user-info">
+                <div class="username-section">
+                    <div class="username-display">
+                        <p id="username">Username</p>
+
+                        <button type="button" id="rename-button" onclick="ShowRename()">
+                            Đổi tên
+                        </button>
+                    </div>
+
+                    <div id="rename-section" style="display: none;">
+                        <input type="text" id="new-username" placeholder="Nhập tên mới">
+
+                        <button id="Save-button" type="button" onclick="RenameUser()">Lưu</button>
+                        <button id="Cancel-button" type="button" onclick="CancelRename()">Hủy</button>
+                    </div>
+                </div>
+
+                <p class="info">
+                    Email: <span id="email"></span>
+                </p>
+            </div>
+
+            
+
+        </div>
+
+        
 
         <!-- Notice -->
-         <div id="notice"></div>
+        <div id="notice"></div>
     </div>
 
     <script src="../js/config.js"></script>

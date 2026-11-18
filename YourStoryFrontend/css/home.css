@@ -2,7 +2,7 @@
 
 body {
     box-sizing: border-box;
-    font-family: 'Lora', sans-serif, monospace ;
+    font-family: 'Lora', sans-serif;
     margin: 0;
     padding-top: 8vh;
     padding-bottom: 10vh;
@@ -24,6 +24,10 @@ body {
         url('../assets/lined-paper.svg');
     background-repeat: no-repeat, repeat;
     background-size: 100% 100%, 100% 40px;
+}
+
+button {
+    font-family: inherit;
 }
 
 .welcome-section{
@@ -60,9 +64,10 @@ body {
 
 
 .main-buttons {
+    flex-direction: column;
+    align-items: center;
     display: flex;
-    align-items: stretch;
-    gap: 6vh;
+    gap: 4vh;
 }
 
 .main-button {
@@ -75,51 +80,31 @@ body {
     border-radius: 2vh;
     cursor: pointer;
     appearance: none ;
-    color: rgb(0, 0, 0);
+    color: #30251F;
     background-color: #F0E5CC;
     border: 2px solid #060706;
     transition: all 0.12s ease;
-    grid-column: span 2;
+    /* grid-column: span 2; */
 }
-
-#write-button {
-     
-}
-
-
-.side-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 2vh;
-}
-
-#view-button,
-#list-button {
-    width: 42vh;
-    height: 9vh;
-    /* flex: 1; */
-}
-
 
 
 .second-buttons {
     position: absolute;
-    top: 3vh;
-    right: 4vh;
+    top: 30vh;
+    left: 8.5vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2vh;
+    gap: 1vh;
     margin-top: 0;
 }
 
 #profile-button,
 #logout-button {
     font-weight: 530;
-    width: 26vh;
-    height: 5vh;
-    padding: 10px;
-    font-size: 1.8vh;
+    width: 17vh;
+    height: 3vh;
+    font-size: 1.4vh;
     letter-spacing: 0.1vh;
     border-radius: 2vh;
     cursor: pointer;
@@ -133,12 +118,26 @@ body {
 .main-button:hover,
 #profile-button:hover,
 #logout-button:hover {
-    /* background-color: #F0E5CC; */
-    transform: translateY(-3px);
+    color: #FAF6EB;
+    background-color: #A18468;
 }
 
 .main-button:active,
 #profile-button:active,
 #logout-button:active {
     transform: scale(0.98) translateY(2px);
+}
+
+.home-avatar {
+    position: absolute;
+    top: 3.5vh;
+    left: 5vh;
+}
+
+.home-avatar img {
+    width: 25vh;
+    height: 25vh;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
 }
