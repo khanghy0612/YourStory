@@ -1,74 +1,98 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Write Journal</title>
+
+    <link rel="stylesheet" href="../css/write-journal.css">
 </head>
 
 <body>
-    <div>
-        <!-- Back to home -->
-        <div>
-            <!-- Back -->
-            <button type="button" onclick="window.location.href='home.html'" >
-                Quay lại
-            </button>
-        </div>
+    <!-- Back to home -->
+    <div class="back-section">
+        <button class="back-button" type="button"
+            onclick="history.back()">
+            Quay lại
+        </button>
+    </div>
 
-        <div>
-            <h1> Viết </h1>
-        </div>
+    <div class="write-container">
+
+        <!-- <h1 id="write-title">Viết</h1> -->
 
         <!-- Notice -->
         <div id="notice"></div>
-        
-        <form>
-            <!-- Label -->
-            <div>
-                <input type="radio" id="forYou" name="audience" checked>
-                <label for="forYou">Cho tui</label>
 
-                <input type="radio" id="forOthers" name="audience">
-                <label for="forOthers">Cho người ta</label>
+        <form class="write-form">
+
+            <!-- Journal toolbar -->
+            <div class="journal-toolbar">
+                <!-- Date -->
+                <div class="date-section">
+                    <span id="journal-date"></span>
+                </div>
+                
+                <!-- Image -->
+                <div class="image-section">
+                    <input type="file" id="image" accept="image/*" hidden>
+
+                    <button id="upload-image-button" type="button"
+                        onclick="document.getElementById('image').click()">
+                        Thêm hình
+                    </button>
+                </div>
+
+                <!-- Audience -->
+                <div class="audience-section">
+                    <div>
+                        <input type="radio" id="forYou" name="audience" checked>
+                        <label for="forYou">Cho mình</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" id="forOthers" name="audience">
+                        <label for="forOthers">Cho người khác</label>
+                    </div>
+                </div>
+
             </div>
-            <br>
 
-            <!-- Add img -->
-            <div>
-                <label for="img_url"> Thêm hình </label>
-                <br>
-                <input type="text" id="img_url" placeholder="URL của hình" >
-            </div>
-
+            <!-- Image preview -->
+            <img id="image-preview" style="display: none;" alt="Image preview">
+            
+            
             <!-- Title -->
-            <div>
-                <label for="title"> Tiêu đề </label>
-                <br>
-                <input type="text" id="title" placeholder="..."> 
-
+            <div class="write-field">
+                <label for="title"> - Tiêu đề: </label>
+                <input type="text" id="title" >
             </div>
 
             <!-- Content -->
-            <div>
-                <label for="content"> Nội dung </label>
-                <br>
-                <textarea id="content" placeholder="..."></textarea>
+            <div class="write-field content-field">
+                <label for="content"> - Nội dung: </label>
+                <textarea id="content" ></textarea>
             </div>
 
-            <!-- Draft button -->
-            <div>
-                <button type="button" onclick="CreateJournal(true)"> Lưu bản nháp </button>
+            <!-- Buttons -->
+            <div class="write-buttons">
+
+                <button type="button" id="publish-button"
+                    onclick="CreateJournal(false)">
+                    Đăng
+                </button>
+
+                <button type="button" id="draft-button"
+                    onclick="CreateJournal(true)">
+                    Lưu nháp
+                </button>
             </div>
 
-            <!-- Publish button -->
-            <div>
-                <button type="button" onclick="CreateJournal(false)"> Đăng </button>
-            </div>
         </form>
     </div>
 
-    <script src="../js/config.js"> </script>
+    <script src="../js/config.js"></script>
     <script src="../js/write-journal.js"></script>
 </body>
 </html>

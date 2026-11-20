@@ -42,7 +42,8 @@ button {
 
 .login-container {
     width: 70vh;
-    height: 80vh;
+    min-height: 65vh;
+    height: auto;
     padding: 7vh 16vh 16vh;
     box-sizing: border-box;
 

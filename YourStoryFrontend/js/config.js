@@ -1,4 +1,5 @@
     const URL = "https://localhost:7145/api";
+    const BASE_URL = "https://localhost:7145";
 
     function CheckLogin()
     {

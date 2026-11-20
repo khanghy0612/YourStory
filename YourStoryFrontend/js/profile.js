@@ -41,7 +41,6 @@
     }
 
 
-
     // Preview Avatar
     document.getElementById("avatar-input").addEventListener("change",
     async function()

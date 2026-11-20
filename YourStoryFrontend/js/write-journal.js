@@ -16,7 +16,6 @@
         {
             title: document.getElementById("title").value,
             content: document.getElementById("content").value,
-            img_url: document.getElementById("img_url").value,
             is_draft: is_draft,
             for_you: document.getElementById("forYou").checked
         };
@@ -58,7 +57,14 @@
                 );
             }
 
-            await HandleResponse(response);
+            const result = await HandleResponse(response);
+
+            let journalId = id || result.id;
+
+            if (document.getElementById("image").files.length > 0)
+            {
+                await UploadImage(journalId);
+            }
 
             window.location.href = "journals.html";
         }
@@ -121,7 +127,13 @@
 
             document.getElementById("title").value = journal.title;
             document.getElementById("content").value = journal.content;
-            document.getElementById("img_url").value = journal.img_url;
+            if (journal.img_url)
+            {
+                const preview = document.getElementById("image-preview");
+
+                preview.src = `${BASE_URL}${journal.img_url}`;
+                preview.style.display = "block";
+            }
 
             if (journal.for_you)
                 document.getElementById("forYou").checked = true;
@@ -159,3 +171,45 @@
         }
     }
 
+    // Preview Image
+    document.getElementById("image").addEventListener("change",
+    function()
+    {
+        const file = this.files[0];
+
+        if (file)
+        {
+            const previewURL = window.URL.createObjectURL(file);
+
+            const preview = document.getElementById("image-preview");
+
+            preview.src = previewURL;
+            preview.style.display = "block";
+        }
+    });
+
+    async function UploadImage(journalId)
+{
+    const file = document.getElementById("image").files[0];
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const response = await fetch(`${URL}/Journal/${journalId}/image`,
+    {
+        method: "PUT",
+        headers:
+        {
+            "Authorization": `Bearer ${token}`
+        },
+        body: formData
+    });
+
+    await HandleResponse(response);
+}
+
+// Display current date
+const today = new Date();
+
+document.getElementById("journal-date").innerText =
+    `#Ngày ${today.getDate()} tháng ${today.getMonth() + 1} năm ${today.getFullYear()}`;

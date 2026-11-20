@@ -108,8 +108,16 @@ LIST
 * [X] Error Handling
 * [ ] CSS
 	[X] first-page
-* [ ] Chuyển sang tiếng Việt
+	[X] Login
+	[X] Signup
+	[X] Home
+	[X] Profile
+	[X] Write journal
+	[ ] Journals
+	[ ] Lists
+* [X] Chuyển sang tiếng Việt
 * [ ] Loading State
+* [ ] BCrypt Password Hashing
 
 ### 8. Hoàn thiện sản phẩm
 
@@ -117,12 +125,12 @@ LIST
 * [ ] Deploy Backend
 * [ ] Deploy Frontend
 * [ ] Test End-to-End
-* [ ] Viết README hoàn chỉnh
 
 ### 9. Nâng cấp Backend (Version 2)
 
 * [ ] DTO
 * [ ] Service Layer
-* [ ] BCrypt Password Hashing
+* [ ] Cache
 * [ ] Export Journal PDF
 * [ ] Claim-based Authorization
+* [ ] Read - Libraries

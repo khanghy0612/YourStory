@@ -34,14 +34,14 @@ button {
 
 .back-section {
     position: absolute;
-    top: 1vh;
-    left: 1vh;
+    top: 3vh;
+    left: 4vh;
 }
 
 
 .signup-container {
     width: 70vh;
-    height: 80vh;
+    height: 76vh;
     padding: 7vh 16vh 16vh;
     box-sizing: border-box;
 

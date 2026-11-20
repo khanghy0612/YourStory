@@ -12,10 +12,12 @@ namespace YourStoryAPI.Controllers
     public class JournalController : ControllerBase
     {
         private readonly YourStoryDbContext _context;
+        private readonly IWebHostEnvironment _environment;
 
-        public JournalController(YourStoryDbContext context)
+        public JournalController(YourStoryDbContext context, IWebHostEnvironment environment)
         {  
             _context = context; 
+            _environment = environment;
         }
 
         //FIND
@@ -96,7 +98,6 @@ namespace YourStoryAPI.Controllers
 
             journal.title = newJournal.title;
             journal.content = newJournal.content;
-            journal.img_url = newJournal.img_url;
             journal.is_draft = newJournal.is_draft;
 
             _context.SaveChanges();
@@ -124,5 +125,68 @@ namespace YourStoryAPI.Controllers
             _context.SaveChanges();
             return Ok("Deleted");
         }
-   }
+
+        //Add Image
+        [Authorize]
+        [HttpPut("{id}/image")]
+        public async Task<IActionResult> UploadImage(IFormFile file, int id)
+        {
+            Journal? journal = Find(id);
+
+            if (journal == null)
+                return NotFound();
+
+            if (journal.users_id != GetUserId())
+                return Forbid();
+
+            // Check file
+            if (file == null || file.Length == 0)
+                return BadRequest("No file selected");
+
+            // Limit file size: 5MB
+            if (file.Length > 5 * 1024 * 1024)
+                return BadRequest("File is too large");
+
+            // Check extension
+            string[] allowedExtensions =
+            {
+                ".jpg", ".jpeg", ".png", ".webp"
+            };
+
+            string extension = Path.GetExtension(file.FileName).ToLowerInvariant();
+
+            if (!allowedExtensions.Contains(extension))
+                return BadRequest("Invalid image format");
+
+            // Create folder
+            string folder = Path.Combine(
+                _environment.WebRootPath,
+                "images",
+                "journals"
+            );
+
+            Directory.CreateDirectory(folder);
+
+            // Generate filename
+            string fileName = Guid.NewGuid().ToString() + extension;
+
+            string filePath = Path.Combine(folder, fileName);
+
+            // Save image
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            // Update database
+            journal.img_url = "/images/journals/" + fileName;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                journal.img_url
+            });
+        }
+    }
 }

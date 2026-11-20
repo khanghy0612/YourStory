@@ -1,0 +1,302 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lora', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    padding: 10vh 5vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    letter-spacing: 0.1vh;
+
+    background-color: #DDCEB2;
+    background-image:
+        linear-gradient(
+            to bottom left,
+            rgba(255, 248, 225, 0.45) 0%,
+            rgba(255, 248, 225, 0.20) 35%,
+            rgba(120, 90, 55, 0.08) 65%,
+            rgba(100, 70, 40, 0.30) 100%
+        ),
+        url('../assets/lined-paper.svg');
+
+    background-repeat: no-repeat, repeat;
+    background-size: 100% 100%, 100% 40px;
+}
+
+/* Back button */
+
+.back-section {
+    position: absolute;
+    top: 3vh;
+    left: 4vh;
+}
+
+.back-button {
+    font-family: inherit;
+    font-size: 1.6vh;
+    padding: 8px 20px;
+
+    border: 2px solid #060706;
+    border-radius: 2vh;
+    background-color: #F0E5CC;
+    color: #30251F;
+
+    cursor: pointer;
+    transition: all 0.12s ease;
+}
+
+
+
+
+
+#upload-avatar-button {
+    width: 10vh;
+    min-width: 0;
+}
+
+#upload-image-button:hover,
+.back-button:hover {
+    color: #FAF6EB;
+    background-color: #A18468;
+}
+
+#upload-image-button:active,
+.back-button:active {
+    transform: scale(0.98) translateY(2px);
+}
+
+/* Main container */
+
+.write-container {
+    width: 110vh;
+    min-height: 85vh;
+    padding: 5vh 10vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3vh;
+
+    background-color: rgba(240, 229, 204, 0.85);
+    border: 1.5px solid #8B735B;
+    border-radius: 2vh;
+
+    box-shadow: 3px 4px 12px rgba(48, 37, 31, 0.18);
+}
+
+/* Title */
+
+#write-title {
+    font-size: 3.5vh;
+    color: #30251F;
+    margin: 0;
+}
+
+/* Form */
+
+.write-form {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+
+/* Journal toolbar */
+.journal-toolbar {
+    width: 100%;
+
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 17vh;
+}
+
+/* Audience */
+.audience-section {
+    display: flex;
+    align-items: center;
+    gap: 2vh;
+
+    font-size: 1.8vh;
+    color: #30251F;
+}
+
+/* Audience */
+.audience-section input {
+    accent-color: #8B735B;
+    cursor: pointer;
+}
+
+.audience-section label {
+    cursor: pointer;
+}
+
+
+/* Image */
+.image-section {
+    display: flex;
+    align-items: center;
+}
+
+#upload-image-button {
+    font-family: 'Lora', sans-serif;
+    font-size: 1.7vh;
+    font-weight: 500;
+
+    padding: 1vh 2vh;
+
+    border: 2px solid #060706;
+    border-radius: 2vh;
+    background-color: #F0E5CC;
+    color: #30251F;
+
+    cursor: pointer;
+    transition: all 0.12s ease;
+}
+
+#upload-image-button:hover {
+    color: #FAF6EB;
+    background-color: #A18468;
+}
+
+#upload-image-button:active {
+    transform: scale(0.98) translateY(2px);
+}
+
+/* Date */
+.write-container {
+    position: relative;
+}
+
+.date-section {
+    position: absolute;
+    top: 2vh;
+    left: 10vh;
+
+    font-size: 1.7vh;
+    font-weight: 500;
+    color: #30251F;
+}
+
+/* Image preview */
+#image-preview {
+    max-width: 100%;
+    max-height: 35vh;
+    object-fit: contain;
+
+    border: 2px solid #6B5848;
+    border-radius: 1vh;
+}
+
+/* Input fields */
+.write-field {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.2vh;
+}
+
+.write-field label {
+    font-size: 1.7vh;
+    font-weight: 600;
+    color: #30251F;
+}
+
+.write-field input,
+.write-field textarea {
+    width: 100%;
+    padding: 1.5vh 2vh;
+    font-weight: 500 ;
+
+    font-family: 'Lora', serif;
+    font-size: 1.6vh;
+    color: #30251F;
+
+    background-color: rgba(255, 248, 225, 0.7);
+    border: 2px solid #6B5848;
+    border-radius: 1vh;
+
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.write-field input {
+    height: 6vh;
+}
+
+.write-field input::placeholder,
+.write-field textarea::placeholder {
+    color: #766657;
+    font-style: italic;
+}
+
+.write-field input:focus,
+.write-field textarea:focus {
+    border-color: #594333;
+    background-color: #FFF9EA;
+    box-shadow: 0 0 5px rgba(89, 67, 51, 0.2);
+}
+
+/* Content */
+
+.content-field textarea {
+    min-height: 35vh;
+    resize: vertical;
+    line-height: 1.8;
+}
+
+/* Buttons */
+
+.write-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 4vh;
+    margin-top: 2vh;
+}
+
+.write-buttons button {
+    width: 25vh;
+    height: 6vh;
+
+    font-family: inherit;
+    font-size: 1.8vh;
+    font-weight: 500;
+
+    background-color: #FAF6EB;
+    color: #30251F;
+
+    border: 2px solid #060706;
+    border-radius: 2vh;
+
+    cursor: pointer;
+    transition: all 0.12s ease;
+}
+
+.write-buttons button:hover {
+    color: #FAF6EB;
+    background-color: #A18468;
+}
+
+.write-buttons button:active {
+    transform: scale(0.98) translateY(2px);
+}
+
+/* Notice */
+
+#notice {
+    font-size: 1.7vh;
+    color: #6B5848;
+    text-align: center;
+}
